@@ -42,13 +42,16 @@ npm i postcss-rename
 
 ## setup postcss-rename
 
-```diff:js:svelte.config.js
+`svelte.config.js`
+
+```diff
 import adapter from '@sveltejs/adapter-auto';
 + import sveltePreprocess from 'svelte-preprocess';
 + import postcssRename from "postcss-rename";
 + 
 + const dev = process.env.NODE_ENV === 'development';
-+ 
++ const PREFIX_NAME = 'prefix';
++
 + const preprocess = sveltePreprocess({
 + 	postcss: dev ? undefined : {
 + 		plugins: [
@@ -82,7 +85,9 @@ export default config;
 
 ## setup umd build
 
-```diff:js:vite.config.js
+`vite.config.js`
+
+```diff
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 + import { resolve } from 'path';
