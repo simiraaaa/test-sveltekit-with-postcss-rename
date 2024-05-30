@@ -38,5 +38,8 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"postcss-rename": "^0.6.1"
+	}
 }

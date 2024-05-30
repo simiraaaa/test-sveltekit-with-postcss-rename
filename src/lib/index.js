@@ -1,1 +1,2 @@
-// Reexport your entry components here
+export { default as Test } from "../components/Test.svelte";
+
