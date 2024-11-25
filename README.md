@@ -78,10 +78,30 @@ export default config;
 
 ```
 
-## TODO: HTML markup class name prefix
+## HTML markup class name prefix
 
-## TODO: JavaScript class name prefix
+`svelte.config.js`
 
+```js
+preprocess: dev ? undefined : [preprocessClassNamePrefix({ prefix: PREFIX_NAME }), preprocess],
+```
+
+see `src/scripts/css-prefix-svelte-preprocess.js`
+
+
+## JavaScript class name prefix
+
+```js
+// cssPrefix('x') → 'prefix--x'
+let className = cssPrefix('x');
+onMount(() => {
+  // cssPrefix('.abc') → '.prefix--abc'
+  document.querySelector(cssPrefix('.abc')).textContent = 'Hello world';
+});
+
+```
+
+see `src/scripts/css-prefix.js`
 
 ## setup umd build
 
@@ -92,8 +112,10 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 + import { resolve } from 'path';
 
++ const dev = process.env.NODE_ENV === 'development';
+
 export default defineConfig({
-	plugins: [sveltekit()],
++ 	plugins: [dev ? sveltekit() : svelte()],
 
 + 	build: {
 + 		lib: {
