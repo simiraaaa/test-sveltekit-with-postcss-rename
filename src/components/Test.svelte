@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { cssPrefix } from '../scripts/css-prefix.js';
+  import Test2 from './Test2.svelte';
   // cssPrefix('x') → 'prefix--x'
   let className = cssPrefix('x');
   let num = 0;
@@ -17,13 +18,13 @@
 <!-- class=prefix--abc -->
 <div class="abc">default2</div>
 <!-- class="prefix--abc" -->
-<div class="abc def">default3</div>
+<div class="abc">default3</div>
 <!-- class="prefix--abc prefix--def" -->
 <div class={className}>var normal1</div>
 <!-- class="{className}" -->
 <div class={className}>var normal2</div>
 <!-- class={className} -->
-<div class="abc {className}-{num}">var normal3</div>
+<div class="abc {className}-{num} ">var normal3</div>
 <!-- class="prefix--abc {className}-{num}" -->
 <div class="{className}-{num}">var normal4</div>
 <!-- class={className}-{num} -->
@@ -49,6 +50,9 @@
 <div class:x>directive shorthand</div>
 
 <!-- class:prefix--x={x} -->
+
+<Test2 />
+<div class="global-test">global-test</div>
 
 <style>
   .abc {
